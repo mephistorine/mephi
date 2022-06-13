@@ -1,6 +1,7 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import './styles.css';
+import { AppProps } from "next/app"
+import Head from "next/head"
+import "tailwindcss/tailwind.css"
+import "./styles.css"
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
@@ -8,11 +9,9 @@ function CustomApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Welcome to mephi.dev!</title>
       </Head>
-      <main className="app">
-        <Component {...pageProps} />
-      </main>
+      <Component { ...pageProps } />
     </>
-  );
+  )
 }
 
-export default CustomApp;
+export default CustomApp
