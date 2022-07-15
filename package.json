@@ -9,9 +9,12 @@
   },
   "private": true,
   "dependencies": {
+    "@fec/remark-a11y-emoji": "^3.1.0",
+    "@leafac/rehype-shiki": "^2.1.2",
     "@mdx-js/loader": "^2.1.1",
     "@next/mdx": "^12.1.6",
     "@nrwl/next": "14.3.0",
+    "classnames": "^2.3.1",
     "core-js": "^3.6.5",
     "gray-matter": "^4.0.3",
     "next": "12.1.6",
@@ -19,7 +22,12 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "regenerator-runtime": "0.13.7",
-    "tslib": "^2.3.0"
+    "remark-gfm": "^3.0.1",
+    "remark-heading-id": "^1.0.0",
+    "shiki": "^0.10.1",
+    "slug": "^5.3.0",
+    "tslib": "^2.3.0",
+    "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
     "@nrwl/cli": "14.3.0",
@@ -30,7 +38,9 @@
     "@nrwl/react": "14.3.0",
     "@nrwl/web": "14.3.0",
     "@nrwl/workspace": "14.3.0",
+    "@tailwindcss/typography": "^0.5.2",
     "@testing-library/react": "13.3.0",
+    "@types/hast": "^2.3.4",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.7",
     "@types/react": "18.0.12",

@@ -2,6 +2,8 @@ import { AppProps } from "next/app"
 import Head from "next/head"
 import "tailwindcss/tailwind.css"
 import "./styles.css"
+import Footer from "../components/Footer"
+import Header from "../components/Header"
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
@@ -9,7 +11,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Welcome to mephi.dev!</title>
       </Head>
-      <Component { ...pageProps } />
+      <Header></Header>
+      <main>
+        <Component { ...pageProps } />
+      </main>
+      <Footer></Footer>
     </>
   )
 }

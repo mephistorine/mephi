@@ -4,7 +4,8 @@ const withNx = require("@nrwl/next/plugins/with-nx");
 const withMDX = require("@next/mdx")({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [],
+    remarkPlugins: [
+    ],
     rehypePlugins: [],
     providerImportSource: "@mdx-js/react"
   }
