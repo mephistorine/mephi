@@ -18,6 +18,7 @@ import { TAGS } from "../../data/tags"
 import { Article, ArticlePoster, ArticleTag } from "../../domain"
 import { formatDate, isStringHasEmoji } from "../../utils"
 import { rehypeHeadings } from "../../utils/rehype-headings"
+import { rehypeTableOfContents } from "../../utils/rehype-table-of-contents"
 
 interface ArticleProps {
   source: MDXRemoteSerializeResult<Record<string, unknown>>
@@ -71,7 +72,8 @@ export const getStaticProps: GetStaticProps<ArticleProps, { slug: string }> = as
             highlighter
           }
         ],
-        rehypeHeadings
+        rehypeHeadings,
+        rehypeTableOfContents
       ]
     },
     scope: articleMetaData as any
