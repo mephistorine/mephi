@@ -30,6 +30,7 @@ export default function Header() {
         <object className="not-sr-only text-black pointer-events-none" data="/assets/icons/search.svg" type="image/svg+xml">
           <img className="not-sr-only" src="/assets/icons/search.svg" />
         </object>
+
         <span className="hidden sm:block">Найти</span>
       </button>
 
@@ -37,6 +38,7 @@ export default function Header() {
         <object className="not-sr-only text-black pointer-events-none" data="/assets/icons/share.svg" type="image/svg+xml">
           <img className="not-sr-only" src="/assets/icons/share.svg" />
         </object>
+
         <span className="hidden sm:block">Поделиться</span>
       </button>
     </div>
