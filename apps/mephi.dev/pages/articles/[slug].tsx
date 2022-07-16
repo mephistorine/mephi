@@ -17,6 +17,7 @@ import { ARTICLES_PATH } from "../../contants"
 import { TAGS } from "../../data/tags"
 import { Article, ArticlePoster, ArticleTag } from "../../domain"
 import { formatDate, isStringHasEmoji } from "../../utils"
+import { makeTitle } from "../../utils/make-title"
 import { rehypeHeadings } from "../../utils/rehype-headings"
 import { rehypeTableOfContents } from "../../utils/rehype-table-of-contents"
 
@@ -132,6 +133,7 @@ export default function ArticleView({ source, metadata }: ArticleProps): JSX.Ele
   return (
     <>
       <Head>
+        <title>{ makeTitle(metadata.title) }</title>
       </Head>
 
       { havePoster ? <ArticlePosterView article={ metadata } /> : null }
