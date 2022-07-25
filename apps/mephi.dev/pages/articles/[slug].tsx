@@ -12,6 +12,8 @@ import { join } from "path"
 import remarkGfm from "remark-gfm"
 import remarkHeadingId from "remark-heading-id"
 import { getHighlighter } from "shiki"
+import Footer from "../../components/Footer"
+import Header, { BreadcrumbItem } from "../../components/Header"
 
 import { ARTICLES_PATH } from "../../contants"
 import { TAGS } from "../../data/tags"
@@ -130,55 +132,72 @@ export default function ArticleView({ source, metadata }: ArticleProps): JSX.Ele
 
   const mdxComponents = {}
 
+  const breadcrumbs: readonly BreadcrumbItem[] = [
+    {
+      name: "Статьи",
+      icon: "📚",
+      url: "/articles/"
+    },
+    {
+      name: metadata.title,
+      icon: metadata.icon,
+      url: `/articles/${ metadata.slug }`
+    }
+  ]
+
   return (
     <>
       <Head>
         <title>{ makeTitle(metadata.title) }</title>
       </Head>
 
-      { havePoster ? <ArticlePosterView article={ metadata } /> : null }
+      <Header breadcrumbs={breadcrumbs} />
+      <main>
+        { havePoster ? <ArticlePosterView article={ metadata } /> : null }
 
-      {
-        haveIcon ? <div className={ cn("icon-container", "mb-4", { "have-poster": havePoster }) }>
-          <div className="wrap">
-            <ArticleIconView article={ metadata } />
-          </div>
-        </div> : null
-      }
+        {
+          haveIcon ? <div className={ cn("icon-container", "mb-4", { "have-poster": havePoster }) }>
+            <div className="wrap">
+              <ArticleIconView article={ metadata } />
+            </div>
+          </div> : null
+        }
 
-      <div className="wrap sm:py-4">
-        <div>
-          <h1 className="text-6xl font-bold mb-4">{ metadata.title }</h1>
+        <div className="wrap sm:py-4">
+          <div>
+            <h1 className="text-6xl font-bold mb-4">{ metadata.title }</h1>
 
-          <div className="grid auto-rows-min grid-cols-[150px_1fr] gap-2 mb-4">
-            <div className="text-black/50">Время публикации</div>
-            <div>{ formatDate(new Date(metadata.createTime)) }</div>
+            <div className="grid auto-rows-min grid-cols-[150px_1fr] gap-2 mb-4">
+              <div className="text-black/50">Время публикации</div>
+              <div>{ formatDate(new Date(metadata.createTime)) }</div>
 
-            <div className="text-black/50">Время обновления</div>
-            <div>{ formatDate(new Date(metadata.updateTime)) }</div>
+              <div className="text-black/50">Время обновления</div>
+              <div>{ formatDate(new Date(metadata.updateTime)) }</div>
 
-            <div className="text-black/50">Метки</div>
-            <div>
-              <ul className="flex gap-2">
-                {
-                  tags.map((tag) => {
-                    return <li key={ tag.slug }>
-                      <Link href={ "/tags/" + tag.slug }>
-                        <a title={ tag.name } style={ { backgroundColor: tag.backgroundColor } }
-                           className="block p-1 pt-0.5 rounded text-black text-sm leading-none">{ tag.slug }</a>
-                      </Link>
-                    </li>
-                  })
-                }
-              </ul>
+              <div className="text-black/50">Метки</div>
+              <div>
+                <ul className="flex gap-2">
+                  {
+                    tags.map((tag) => {
+                      return <li key={ tag.slug }>
+                        <Link href={ "/tags/" + tag.slug }>
+                          <a title={ tag.name } style={ { backgroundColor: tag.backgroundColor } }
+                             className="block p-1 pt-0.5 rounded text-black text-sm leading-none">{ tag.slug }</a>
+                        </Link>
+                      </li>
+                    })
+                  }
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="text-container">
-          <MDXRemote { ...source } components={ mdxComponents } />
+          <div className="text-container">
+            <MDXRemote { ...source } components={ mdxComponents } />
+          </div>
         </div>
-      </div>
+      </main>
+      <Footer />
     </>
   )
 }

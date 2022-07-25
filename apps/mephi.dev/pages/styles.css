@@ -2,6 +2,10 @@ body {
   @apply text-[#37352f]
 }
 
+summary {
+  @apply cursor-pointer select-none
+}
+
 .wrap {
   @apply max-w-[60ch] mx-auto
 }

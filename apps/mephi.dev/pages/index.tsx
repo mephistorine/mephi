@@ -1,8 +1,10 @@
 import Link from "next/link"
+import Header from "../components/Header"
 
 export default function Main() {
   return (
     <>
+      <Header />
       <main>
         <div>
           <img className="max-h-[300px] w-full object-cover object-center" src="/assets/images/promare-night-city.png" alt="" />
