@@ -1,6 +1,11 @@
 import Link from "next/link"
 import Header from "../components/Header"
 
+/*export const getStaticProps: GetStaticProps = () => {
+  const articleFileNames: string[] = readdirSync(ARTICLES_PATH)
+
+}*/
+
 export default function Main() {
   return (
     <>
@@ -9,25 +14,28 @@ export default function Main() {
         <div>
           <img className="max-h-[300px] w-full object-cover object-center" src="/assets/images/promare-night-city.png" alt="" />
         </div>
-        <div className="have-poster">
+        <div className="icon-container mb-4">
           <div className="wrap">
             <p className="article-icon text-[5rem] leading-none px-4 sm:px-0">👿</p>
           </div>
         </div>
-        <div className="wrap">
+        <div className="wrap sm:py-4">
           <div>
             <h1 className="text-4xl font-bold mb-8">Сэм Булатов — Блог</h1>
 
             <section className="mb-8">
               <ul className="flex justify-between gap-4">
                 <li>
-                  <Link href="/projects"><a href="/projects">Проекты</a></Link>
+                  <Link href="/projects"><a className="interactive" href="/projects">Проекты</a></Link>
                 </li>
                 <li>
-                  <Link href="/talks"><a href="/talks">Доклады</a></Link>
+                  <Link href="/articles"><a className="interactive" href="/articles">Статьи</a></Link>
                 </li>
                 <li>
-                  <Link href="/about"><a href="/about">Обо мне</a></Link>
+                  <Link href="/talks"><a className="interactive" href="/talks">Доклады</a></Link>
+                </li>
+                <li>
+                  <Link href="/about"><a className="interactive" href="/about">Обо мне</a></Link>
                 </li>
               </ul>
             </section>

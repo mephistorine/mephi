@@ -24,6 +24,17 @@ tags.set(
   }
 )
 
+tags.set(
+  "html",
+  {
+    name: "HTML",
+    slug: "html",
+    createTime: "2022-06-22",
+    backgroundColor: "hsla(358,100%,65%,0.5)",
+    textColor: ""
+  }
+)
+
 export {
   tags as TAGS
 }

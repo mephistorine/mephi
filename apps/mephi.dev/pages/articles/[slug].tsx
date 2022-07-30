@@ -12,10 +12,12 @@ import { join } from "path"
 import remarkGfm from "remark-gfm"
 import remarkHeadingId from "remark-heading-id"
 import { getHighlighter } from "shiki"
+import ArticleTagView from "../../components/ArticleTagView"
 import Footer from "../../components/Footer"
 import Header, { BreadcrumbItem } from "../../components/Header"
+import PageIcon from "../../components/PageIcon"
 
-import { ARTICLES_PATH } from "../../contants"
+import { ARTICLES_BREADCRUMB, ARTICLES_PATH } from "../../contants"
 import { TAGS } from "../../data/tags"
 import { Article, ArticlePoster, ArticleTag } from "../../domain"
 import { formatDate, isStringHasEmoji } from "../../utils"
@@ -133,15 +135,12 @@ export default function ArticleView({ source, metadata }: ArticleProps): JSX.Ele
   const mdxComponents = {}
 
   const breadcrumbs: readonly BreadcrumbItem[] = [
-    {
-      name: "Статьи",
-      icon: "📚",
-      url: "/articles/"
-    },
+    ARTICLES_BREADCRUMB,
     {
       name: metadata.title,
       icon: metadata.icon,
-      url: `/articles/${ metadata.slug }`
+      url: `/articles/${ metadata.slug }`,
+      slug: metadata.slug
     }
   ]
 
@@ -151,14 +150,14 @@ export default function ArticleView({ source, metadata }: ArticleProps): JSX.Ele
         <title>{ makeTitle(metadata.title) }</title>
       </Head>
 
-      <Header breadcrumbs={breadcrumbs} />
+      <Header breadcrumbs={ breadcrumbs } />
       <main>
         { havePoster ? <ArticlePosterView article={ metadata } /> : null }
 
         {
           haveIcon ? <div className={ cn("icon-container", "mb-4", { "have-poster": havePoster }) }>
             <div className="wrap">
-              <ArticleIconView article={ metadata } />
+              <PageIcon icon={ metadata.icon } slug={ metadata.slug } size="80px" emojiSize="5rem" />
             </div>
           </div> : null
         }
@@ -181,8 +180,9 @@ export default function ArticleView({ source, metadata }: ArticleProps): JSX.Ele
                     tags.map((tag) => {
                       return <li key={ tag.slug }>
                         <Link href={ "/tags/" + tag.slug }>
-                          <a title={ tag.name } style={ { backgroundColor: tag.backgroundColor } }
-                             className="block p-1 pt-0.5 rounded text-black text-sm leading-none">{ tag.slug }</a>
+                          <a>
+                            <ArticleTagView tag={ tag }  />
+                          </a>
                         </Link>
                       </li>
                     })

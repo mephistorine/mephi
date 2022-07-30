@@ -1,18 +1,19 @@
 import Link from "next/link"
 import { useCallback } from "react"
+import PageIcon from "./PageIcon"
 
 export interface BreadcrumbItem {
   url: string
   icon: string | null
   name: string
+  slug: string | null
 }
 
 interface HeaderProps {
-  breadcrumbs: readonly BreadcrumbItem[]
+  breadcrumbs?: readonly BreadcrumbItem[]
 }
 
-export default function Header({ breadcrumbs }: HeaderProps) {
-
+export default function Header({ breadcrumbs = [] }: HeaderProps) {
   const onClickSearchButton = useCallback(() => {
     console.log("search")
   }, [])
@@ -21,8 +22,8 @@ export default function Header({ breadcrumbs }: HeaderProps) {
     console.log("share")
   }, [])
 
-  return <header className="text-xs" style={{ padding: "0.5rem" }}>
-    <div className="mx-auto max-w-[80ch] flex justify-between">
+  return <header className="text-xs p-2" style={{ padding: "0.5rem" }}>
+    <div className="mx-auto max-w-[80ch] flex justify-between whitespace-nowrap max-w-[100px] overflow-auto">
       <div>
         <ul className="flex justify-between items-center gap-2">
           <li className="breadcrumbs-item flex">
@@ -39,7 +40,7 @@ export default function Header({ breadcrumbs }: HeaderProps) {
               return <li key={ breadcrumb.name } className="breadcrumbs-item flex">
                 <Link href={ breadcrumb.url }>
                   <a className="special-link flex items-center gap-2 interactive">
-                    <span>{ breadcrumb.icon }</span>
+                    <PageIcon icon={ breadcrumb.icon } slug={ breadcrumb.slug } size="1rem" emojiSize="1rem" />
                     <span>{ breadcrumb.name }</span>
                   </a>
                 </Link>
