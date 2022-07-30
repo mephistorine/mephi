@@ -9,3 +9,10 @@ export const ARTICLES_BREADCRUMB: BreadcrumbItem = {
   url: "/articles/",
   slug: null
 }
+
+export const TAGS_BREADCRUMB: BreadcrumbItem = {
+  name: "Метки",
+  icon: "🏷",
+  url: "/tags/",
+  slug: null
+}

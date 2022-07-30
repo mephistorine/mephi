@@ -57,7 +57,7 @@ export default function Articles({ articleMetadatas }: ArticlesProps) {
       </div>
       <div className="max-w-[100ch] mx-auto px-4 sm:p-0 sm:py-4">
         <div>
-          <h1 className="text-4xl font-bold mb-8">Статьи</h1>
+          <h1 className="text-4xl font-bold mb-8">{ ARTICLES_BREADCRUMB.name }</h1>
 
           <section className="mb-8">
             <table className="w-full text-sm">
