@@ -17,9 +17,7 @@ export default function PageIcon({ icon, slug, size, emojiSize }: PageIconProps)
   }
 
   if (isStringHasEmoji(icon)) {
-    return <p className="article-icon leading-none px-4 select-none sm:px-0" style={{ fontSize: emojiSize }}>
-      <span>{ icon }</span>
-    </p>
+    return <span className="article-icon leading-none px-4 select-none sm:px-0" style={{ fontSize: emojiSize }}>{ icon }</span>
   }
 
   return <img className="rounded" draggable={false} style={{ width: size, height: size }} src={ `/articles/${ slug }/${ icon }` } alt="" />

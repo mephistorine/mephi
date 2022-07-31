@@ -59,8 +59,8 @@ export default function Articles({ articleMetadatas }: ArticlesProps) {
         <div>
           <h1 className="text-4xl font-bold mb-8">{ ARTICLES_BREADCRUMB.name }</h1>
 
-          <section className="mb-8">
-            <table className="w-full text-sm">
+          <section className="mb-8 overflow-auto">
+            <table className="w-full sm:text-sm">
               <tr className="text-gray-600 font-normal text-left">
                 <th className="border border-gray-300 px-2 py-1">Название</th>
                 <th className="border border-gray-300 px-2 py-1">Время создания</th>
@@ -72,7 +72,7 @@ export default function Articles({ articleMetadatas }: ArticlesProps) {
                   return <tr key={ article.slug }>
                     <td className="border border-gray-300 px-2 py-1">
                       <Link href={ "/articles/" + article.slug }>
-                        <a href={ "/articles/" + article.slug } className="flex gap-1 items-center">
+                        <a href={ "/articles/" + article.slug }>
                           <PageIcon icon={ article.icon } slug={ article.slug } size="1em" emojiSize="1em" />
                           <span className="border-b">{ article.title }</span>
                         </a>

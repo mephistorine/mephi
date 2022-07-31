@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { useCallback } from "react"
 import PageIcon from "./PageIcon"
 
 export interface BreadcrumbItem {
@@ -14,18 +13,11 @@ interface HeaderProps {
 }
 
 export default function Header({ breadcrumbs = [] }: HeaderProps) {
-  const onClickSearchButton = useCallback(() => {
-    console.log("search")
-  }, [])
-
-  const onClickShareButton = useCallback(() => {
-    console.log("share")
-  }, [])
 
   return <header className="text-xs p-2" style={{ padding: "0.5rem" }}>
     <div className="mx-auto max-w-[80ch] flex justify-between whitespace-nowrap max-w-[100px] overflow-auto">
       <div>
-        <ul className="flex justify-between items-center gap-2">
+        <ul className="hidden justify-between items-center gap-2">
           <li className="breadcrumbs-item flex">
             <Link href="/">
               <a className="special-link flex items-center gap-2 interactive">
@@ -37,7 +29,7 @@ export default function Header({ breadcrumbs = [] }: HeaderProps) {
 
           {
             breadcrumbs.map((breadcrumb) => {
-              return <li key={ breadcrumb.name } className="breadcrumbs-item flex">
+              return <li key={ breadcrumb.name } className="breadcrumbs-item hidden sm:flex">
                 <Link href={ breadcrumb.url }>
                   <a className="special-link flex items-center gap-2 interactive">
                     <PageIcon icon={ breadcrumb.icon } slug={ breadcrumb.slug } size="1rem" emojiSize="1rem" />
@@ -51,14 +43,14 @@ export default function Header({ breadcrumbs = [] }: HeaderProps) {
       </div>
 
       <div className="flex gap-2">
-        <button onClick={onClickSearchButton} className="interactive flex gap-1 items-center">
+        <button className="interactive flex gap-1 items-center">
           <object className="not-sr-only text-black pointer-events-none" data="/assets/icons/search.svg" type="image/svg+xml">
             <img className="not-sr-only" src="/assets/icons/search.svg" />
           </object>
           <span className="hidden sm:block">Найти</span>
         </button>
 
-        <button onClick={onClickShareButton} className="interactive flex gap-1">
+        <button className="interactive flex gap-1">
           <object className="not-sr-only text-black pointer-events-none" data="/assets/icons/share.svg" type="image/svg+xml">
             <img className="not-sr-only" src="/assets/icons/share.svg" />
           </object>

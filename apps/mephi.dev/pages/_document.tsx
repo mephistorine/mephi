@@ -5,7 +5,6 @@ export default function Document() {
   return (
     <Html lang="ru">
       <Head>
-        <title>Сэм Булатов</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <body>
