@@ -1,8 +1,13 @@
 import type { AppProps } from "next/app"
+import Head from "next/head"
 import "../styles/globals.css"
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component { ...pageProps } />
+export default function App({ Component, pageProps }: AppProps) {
+  return <>
+    <Head>
+      <title>Welcome to mephi.dev!</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </Head>
+    <Component { ...pageProps } />
+  </>
 }
-
-export default MyApp
