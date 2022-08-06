@@ -16,17 +16,16 @@ import remarkGfm from "remark-gfm"
 // @ts-ignore
 import remarkHeadingId from "remark-heading-id"
 import { getHighlighter } from "shiki"
-import { ArticleTagView, BreadcrumbItem, Header, PageIcon } from "../../components"
-import { Footer } from "../../components/footer"
+import { ArticleTagView, BreadcrumbItem, Footer, Header, PageIcon, SocialButtons } from "../../components"
 
 import { ARTICLES_BREADCRUMB, ARTICLES_PATH } from "../../constants"
 import { TAGS } from "../../data"
-import { Article, ArticlePoster, ArticleTag, makeArticle } from "../../domain"
+import { Article, ArticleLike, ArticlePoster, ArticleTag, makeArticle } from "../../domain"
 import { formatDate, makeTitle, Maybe, rehypeHeadings, rehypeTableOfContents } from "../../utils"
 
 interface ArticleProps {
   source: MDXRemoteSerializeResult<Record<string, unknown>>
-  metadata: Article
+  metadata: ArticleLike
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -90,7 +89,7 @@ export const getStaticProps: GetStaticProps<ArticleProps, { slug: string }> = as
   return {
     props: {
       source: mdxSerializeResult,
-      metadata: articleMetaData
+      metadata: articleMetaData as any
     }
   }
 }
@@ -180,9 +179,11 @@ export default function ArticlePage({ source, metadata }: ArticleProps): JSX.Ele
             </div>
           </div>
 
-          <div className="text-container">
+          <div className="text-container mb-4">
             <MDXRemote { ...source } components={ mdxComponents } />
           </div>
+
+          <SocialButtons title={ article.title } url={ `https://mephi.dev/articles/${ article.slug }` } />
         </div>
       </main>
       <Footer />
