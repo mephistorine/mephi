@@ -10,19 +10,10 @@ export default function Home() {
     </Head>
     <Header breadcrumbs={ [ HOME_PAGE ] } />
     <main>
-      <div className="icon-container mb-4">
-        <div className="wrap">
-          <p className="article-icon text-[5rem] leading-none px-4 sm:px-0">
-            <PageIcon icon={ HOME_PAGE.icon } />
-          </p>
-        </div>
-      </div>
-      <div className="wrap sm:py-4">
+      <div className="wrap py-4">
         <div>
-          <h1 className="text-4xl font-bold mb-8">{ HOME_PAGE.name }</h1>
-
           <section className="mb-8">
-            <ul className="flex justify-between gap-4">
+            <ul className="flex justify-between gap-4 flex-col sm:flex-row">
               <li>
                 <Link href={ TALKS_BREADCRUMB.url }>
                   <a className="interactive" href={ TALKS_BREADCRUMB.url }>
@@ -61,6 +52,8 @@ export default function Home() {
             <h2 className="text-3xl font-bold">Привет 👋</h2>
             <p>Тут я делюсь своим опытом, в разработке приложений и не только. Технический стек Angular, Typescript, RxJS и Leaflet.</p>
           </section>
+
+
         </div>
       </div>
     </main>

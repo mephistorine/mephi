@@ -1,9 +1,11 @@
 import { GetStaticProps } from "next"
+import Head from "next/head"
 import Link from "next/link"
 import { Footer, Header } from "../../components"
 import { ARTICLES_BREADCRUMB, HOME_PAGE } from "../../constants"
 import { Article, ArticleLike, makeArticle } from "../../domain"
 import { getAllArticles } from "../../entities"
+import { descSort } from "../../utils/desc-sort"
 
 interface AllArticlesPageProps {
   articleData: readonly ArticleLike[]
@@ -20,8 +22,12 @@ export const getStaticProps: GetStaticProps<AllArticlesPageProps> = () => {
 
 export default function AllArticlesPage({ articleData }: AllArticlesPageProps) {
   const articles: readonly Article[] = articleData.map((articleLike) => makeArticle(articleLike))
+
   return <>
-    <Header breadcrumbs={ [ HOME_PAGE, ARTICLES_BREADCRUMB ] }/>
+    <Head>
+      <title>Статьи – { HOME_PAGE.name }</title>
+    </Head>
+    <Header breadcrumbs={ [ HOME_PAGE, ARTICLES_BREADCRUMB ] } />
     <main>
       <div className="icon-container mb-4">
         <div className="wrap">
@@ -35,15 +41,18 @@ export default function AllArticlesPage({ articleData }: AllArticlesPageProps) {
           <section className="mb-8 overflow-auto text-container">
             <ul>
               {
-                articles.map((article) => {
-                  return <li key={ article.slug }>
-                    <Link href={ `/articles/${ article.slug }` }>
-                      <a href={ `/articles/${ article.slug }` }>
-                        { article.title }
-                      </a>
-                    </Link>
-                  </li>
-                })
+                articles
+                  .slice()
+                  .sort((a, b) => descSort(a, b, v => Date.parse(v.createTime)))
+                  .map((article) => {
+                    return <li key={ article.slug }>
+                      <Link href={ `/articles/${ article.slug }` }>
+                        <a href={ `/articles/${ article.slug }` }>
+                          { article.title }
+                        </a>
+                      </Link>
+                    </li>
+                  })
               }
             </ul>
           </section>
