@@ -2,12 +2,20 @@ import { isStringHasEmoji, Maybe } from "../utils"
 
 export interface PageIconProps {
   readonly icon: Maybe<string>
-  readonly slug: Maybe<string>
-  readonly size: string
-  readonly emojiSize: string
+  readonly slug?: Maybe<string>
+  readonly size?: string
+  readonly emojiSize?: string
 }
 
-export function PageIcon({ icon, slug, size, emojiSize }: PageIconProps) {
+const defaultProps: Partial<PageIconProps> = {
+  slug: Maybe.empty(),
+  size: "1em",
+  emojiSize: "1em"
+}
+
+export function PageIcon(props: PageIconProps) {
+  const { icon, slug, size, emojiSize }: Required<PageIconProps> = { ...defaultProps, ...props } as Required<PageIconProps>
+
   if (icon.isEmpty()) {
     return null
   }
@@ -23,11 +31,15 @@ export function PageIcon({ icon, slug, size, emojiSize }: PageIconProps) {
   }
 
   if (slug.isEmpty()) {
-    throw new Error("Slug prop must be defined")
+    return <img className="rounded"
+                draggable="false"
+                style={ { width: size, height: size } }
+                src={ iconValue }
+                alt="" />
   }
 
   return <img className="rounded"
-              draggable={ false }
+              draggable="false"
               style={ { width: size, height: size } }
               src={ `/articles/${ slug.get() }/${ iconValue }` }
               alt="" />

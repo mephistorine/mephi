@@ -19,7 +19,7 @@ summary {
 }
 
 .icon-container:not(.have-poster) {
-  padding-top: 2.5rem;
+  @apply pt-[2.5rem]
 }
 
 .breadcrumbs-item:not(:last-child)::after {

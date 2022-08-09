@@ -18,15 +18,6 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
     <div className="flex justify-between">
       <div>
         <ul className="flex justify-between items-center gap-2">
-          <li className="breadcrumbs-item flex">
-            <Link href="/">
-              <a className="special-link flex items-center gap-2 interactive">
-                <span>😹</span>
-                <span>Сэм Булатов — Блог</span>
-              </a>
-            </Link>
-          </li>
-
           {
             breadcrumbs.map((breadcrumb) => {
               return <li key={ breadcrumb.name } className="breadcrumbs-item flex">

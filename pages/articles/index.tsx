@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next"
 import Link from "next/link"
 import { Footer, Header } from "../../components"
-import { ARTICLES_BREADCRUMB } from "../../constants"
+import { ARTICLES_BREADCRUMB, HOME_PAGE } from "../../constants"
 import { Article, ArticleLike, makeArticle } from "../../domain"
 import { getAllArticles } from "../../entities"
 
@@ -21,14 +21,14 @@ export const getStaticProps: GetStaticProps<AllArticlesPageProps> = () => {
 export default function AllArticlesPage({ articleData }: AllArticlesPageProps) {
   const articles: readonly Article[] = articleData.map((articleLike) => makeArticle(articleLike))
   return <>
-    <Header breadcrumbs={ [ ARTICLES_BREADCRUMB ] }/>
+    <Header breadcrumbs={ [ HOME_PAGE, ARTICLES_BREADCRUMB ] }/>
     <main>
       <div className="icon-container mb-4">
-        <div className="max-w-[100ch] mx-auto px-4 sm:p-0">
+        <div className="wrap">
           <p className="article-icon text-[5rem] leading-none px-4 sm:px-0">{ ARTICLES_BREADCRUMB.icon.get() }</p>
         </div>
       </div>
-      <div className="max-w-[100ch] mx-auto px-4 sm:p-0 sm:py-4">
+      <div className="wrap sm:py-4">
         <div>
           <h1 className="text-4xl font-bold mb-8">{ ARTICLES_BREADCRUMB.name }</h1>
 
@@ -49,7 +49,8 @@ export default function AllArticlesPage({ articleData }: AllArticlesPageProps) {
           </section>
         </div>
       </div>
+
+      <Footer />
     </main>
-    <Footer />
   </>
 }

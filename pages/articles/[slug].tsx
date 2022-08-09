@@ -18,10 +18,10 @@ import remarkHeadingId from "remark-heading-id"
 import { getHighlighter } from "shiki"
 import { ArticleTagView, BreadcrumbItem, Footer, Header, PageIcon, SocialButtons } from "../../components"
 
-import { ARTICLES_BREADCRUMB, ARTICLES_PATH } from "../../constants"
+import { ARTICLES_BREADCRUMB, ARTICLES_PATH, HOME_PAGE } from "../../constants"
 import { TAGS } from "../../data"
 import { Article, ArticleLike, ArticlePoster, ArticleTag, makeArticle } from "../../domain"
-import { formatDate, makeTitle, Maybe, rehypeHeadings, rehypeTableOfContents } from "../../utils"
+import { formatDate, Maybe, rehypeHeadings, rehypeTableOfContents } from "../../utils"
 
 interface ArticleProps {
   source: MDXRemoteSerializeResult<Record<string, unknown>>
@@ -122,6 +122,7 @@ export default function ArticlePage({ source, metadata }: ArticleProps): JSX.Ele
   const mdxComponents = {}
 
   const breadcrumbs: readonly BreadcrumbItem[] = [
+    HOME_PAGE,
     ARTICLES_BREADCRUMB,
     {
       name: article.title,
@@ -134,7 +135,7 @@ export default function ArticlePage({ source, metadata }: ArticleProps): JSX.Ele
   return (
     <>
       <Head>
-        <title>{ makeTitle(article.title) }</title>
+        <title>{ article.title } – { HOME_PAGE.name }</title>
       </Head>
 
       <Header breadcrumbs={ breadcrumbs } />
@@ -185,8 +186,9 @@ export default function ArticlePage({ source, metadata }: ArticleProps): JSX.Ele
 
           <SocialButtons title={ article.title } url={ `https://mephi.dev/articles/${ article.slug }` } />
         </div>
+
+        <Footer />
       </main>
-      <Footer />
     </>
   )
 }

@@ -7,6 +7,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <Head>
       <title>Welcome to mephi.dev!</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <link rel="icon" type="image/png" href="/assets/images/favicon.png" sizes="400x400" />
     </Head>
     <Component { ...pageProps } />
   </>

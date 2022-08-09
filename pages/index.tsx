@@ -1,22 +1,25 @@
+import Head from "next/head"
 import Link from "next/link"
 import { Footer, Header, PageIcon } from "../components"
-import { ABOUT_ME_PAGE, ARTICLES_BREADCRUMB, PROJECTS_BREADCRUMB, TALKS_BREADCRUMB } from "../constants"
+import { ABOUT_ME_PAGE, ARTICLES_BREADCRUMB, HOME_PAGE, PROJECTS_BREADCRUMB, TALKS_BREADCRUMB } from "../constants"
 
 export default function Home() {
   return <>
-    <Header />
+    <Head>
+      <title>Главная – { HOME_PAGE.name }</title>
+    </Head>
+    <Header breadcrumbs={ [ HOME_PAGE ] } />
     <main>
-      <div>
-        <img className="max-h-[300px] w-full object-cover object-center" src="/assets/images/promare-night-city.png" alt="" />
-      </div>
       <div className="icon-container mb-4">
         <div className="wrap">
-          <p className="article-icon text-[5rem] leading-none px-4 sm:px-0">👿</p>
+          <p className="article-icon text-[5rem] leading-none px-4 sm:px-0">
+            <PageIcon icon={ HOME_PAGE.icon } />
+          </p>
         </div>
       </div>
       <div className="wrap sm:py-4">
         <div>
-          <h1 className="text-4xl font-bold mb-8">Сэм Булатов — Блог</h1>
+          <h1 className="text-4xl font-bold mb-8">{ HOME_PAGE.name }</h1>
 
           <section className="mb-8">
             <ul className="flex justify-between gap-4">

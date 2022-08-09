@@ -38,3 +38,10 @@ export const TAGS_BREADCRUMB: BreadcrumbItem = {
   url: "/tags/",
   slug: Maybe.empty()
 }
+
+export const HOME_PAGE: BreadcrumbItem = {
+  name: "Сэм Булатов",
+  icon: Maybe.of("/assets/images/favicon.png"),
+  url: "/",
+  slug: Maybe.empty()
+}
