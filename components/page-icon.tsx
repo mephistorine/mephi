@@ -27,7 +27,7 @@ export function PageIcon(props: PageIconProps) {
   }
 
   if (isStringHasEmoji(iconValue)) {
-    return <span className="article-icon leading-none px-4 select-none sm:px-0" style={ { fontSize: emojiSize } }>{ iconValue }</span>
+    return <span className="leading-none select-none" style={ { fontSize: emojiSize } }>{ iconValue }</span>
   }
 
   if (slug.isEmpty()) {
