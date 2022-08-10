@@ -14,7 +14,7 @@ interface HeaderProps {
 }
 
 export function Header({ breadcrumbs = [] }: HeaderProps) {
-  return <header className="p-2">
+  return <header className="p-2 max-w-[1440px]">
     <div className="flex justify-between">
       <div>
         <ul className="flex justify-between items-center gap-2">

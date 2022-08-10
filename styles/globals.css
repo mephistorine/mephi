@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply text-[18px] sm:text-[16px]
+  }
+
   body {
     @apply text-[#37352f]
   }
@@ -37,7 +41,6 @@ img.emoji {
 
 .text-container {
   line-height: 1.75;
-  font-size: 16px;
 }
 
 .text-container a {

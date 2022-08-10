@@ -100,7 +100,7 @@ function getPosterUrl(slug: string, poster: ArticlePoster): string {
 
 function ArticlePosterView({ article }: { article: Article }): JSX.Element {
   return <div>
-    <img className="max-h-[300px] w-full object-cover object-center"
+    <img className="max-h-[150px] sm:max-h-[300px] w-full max-w-[1440px] mx-auto my-0 object-cover object-center"
          src={ getPosterUrl(article.slug, article.poster.get()) }
          alt={ article.title } />
   </div>
