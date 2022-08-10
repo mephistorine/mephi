@@ -1,4 +1,5 @@
 import { ArticleTag } from "../domain"
+import { Maybe } from "../utils"
 
 const tags: Map<string, ArticleTag> = new Map()
 
@@ -34,6 +35,10 @@ tags.set(
     textColor: ""
   }
 )
+
+export function getTag(slug: string): Maybe<Readonly<ArticleTag>>{
+  return Maybe.ofNullable(tags.get(slug))
+}
 
 export {
   tags as TAGS
