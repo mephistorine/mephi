@@ -2,30 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply text-[#37352f]
-}
+@layer base {
+  body {
+    @apply text-[#37352f]
+  }
 
-summary {
-  @apply cursor-pointer select-none
+  summary {
+    @apply cursor-pointer select-none
+  }
 }
 
 .wrap {
   @apply max-w-[60ch] mx-auto px-4
 }
 
-.icon-container.have-poster .article-icon {
+.icon-container.have-poster {
   @apply mt-[-2.5rem]
 }
 
 .icon-container:not(.have-poster) {
   @apply pt-[2.5rem]
-}
-
-.breadcrumbs-item:not(:last-child)::after {
-  content: "/";
-  margin-left: 0.3rem;
-  color: #bebebe;
 }
 
 img.emoji {
