@@ -143,7 +143,7 @@ export default function ArticlePage({ source, metadata }: ArticleProps): JSX.Ele
         { article.poster.isPresent() && <ArticlePosterView article={ article } /> }
 
         {
-          article.icon.isPresent() && <div className="icon-container mb-4 have-poster">
+          article.icon.isPresent() && <div className="icon-container have-poster mb-4">
             <div className="wrap">
               <PageIcon icon={ article.icon } slug={ Maybe.of(article.slug) } size="80px" emojiSize="5rem" />
             </div>

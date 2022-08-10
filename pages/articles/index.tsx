@@ -38,7 +38,7 @@ export default function AllArticlesPage({ articleData }: AllArticlesPageProps) {
         <div>
           <h1 className="text-4xl font-bold mb-8">{ ARTICLES_BREADCRUMB.name }</h1>
 
-          <section className="mb-8 overflow-auto text-container">
+          <section className="mb-4 overflow-auto text-container">
             <ul>
               {
                 articles
