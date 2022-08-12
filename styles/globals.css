@@ -43,11 +43,13 @@ img.emoji {
   line-height: 1.75;
 }
 
-.text-container a {
+.text-container a,
+.like-link {
   border-bottom: 1px solid currentColor;
 }
 
-.text-container a:hover {
+.text-container a:hover,
+.like-link:hover {
   border-color: transparent;
 }
 
@@ -107,7 +109,7 @@ img.emoji {
   text-align: end;
   position: absolute;
   right: calc(100% + 0.4rem);
-  color: #8870FF;
+  color: #8870ff;
 }
 
 .text-container ul li::before {

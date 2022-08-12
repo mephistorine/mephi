@@ -16,6 +16,6 @@ export function SocialButtons(props: SocialButtonsProps) {
     <a className="px-2 py-1 border rounded hover:bg-gray-200" href="/rss.xml" target="_blank">Подписаться на RSS</a>
     <a className="px-2 py-1 border rounded hover:bg-gray-200" href={ twitterUrl.toString() } target="_blank" rel="noreferrer">Твитнуть</a>
     <a className="px-2 py-1 border rounded hover:bg-gray-200" href={ vkUrl.toString() } target="_blank" rel="noreferrer">Поделиться в ВК</a>
-    {/*<a href="https://boosty.to/mephistorine" target="_blank" rel="noreferrer">Поддержать</a>*/}
+    {/*<a href="https://boosty.to/mephistorine" target="_blank" rel="noreferrer">Поддержать</a>*/ }
   </div>
 }

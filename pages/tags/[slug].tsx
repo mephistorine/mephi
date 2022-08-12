@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps<TagsPageProps, { slug: string }> = (
   return {
     props: {
       articles,
-      tag: tag.get(),
+      tag: tag.get()
     }
   }
 }

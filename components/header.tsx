@@ -20,7 +20,8 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
         <ul className="flex justify-between items-center gap-2">
           {
             breadcrumbs.map((breadcrumb) => {
-              return <li key={ breadcrumb.name } className="after:content-['/'] after:ml-[0.3rem] after:text-[#bebebe] hidden first:flex first:after:invisible last:after:hidden sm:flex sm:first:after:visible">
+              return <li key={ breadcrumb.name }
+                         className="after:content-['/'] after:ml-[0.3rem] after:text-[#bebebe] hidden first:flex first:after:invisible last:after:hidden sm:flex sm:first:after:visible">
                 <Link href={ breadcrumb.url }>
                   <a className="special-link flex items-center gap-2 interactive">
                     <PageIcon icon={ breadcrumb.icon } slug={ breadcrumb.slug } size="1rem" emojiSize="1rem" />

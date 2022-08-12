@@ -3,6 +3,7 @@ import { BreadcrumbItem } from "../components"
 import { Maybe } from "../utils"
 
 export const ARTICLES_PATH: string = join(process.cwd(), "_articles")
+export const TALKS_PATH: string = join(process.cwd(), "_talks")
 
 export const ARTICLES_BREADCRUMB: BreadcrumbItem = {
   name: "Статьи",

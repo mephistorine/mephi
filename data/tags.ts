@@ -36,7 +36,7 @@ tags.set(
   }
 )
 
-export function getTag(slug: string): Maybe<Readonly<ArticleTag>>{
+export function getTag(slug: string): Maybe<Readonly<ArticleTag>> {
   return Maybe.ofNullable(tags.get(slug))
 }
 
