@@ -6,5 +6,7 @@ export interface Speach {
   time: Date
   slidesUrl: Maybe<string>
   videoUrl: Maybe<string>
+  siteUrl: Maybe<string>
+  notesUrl: Maybe<string>
   language: "RU" | "EN"
 }
