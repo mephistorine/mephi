@@ -1,4 +1,6 @@
+import dynamic from "next/dynamic"
 import Head from "next/head"
+import { Suspense } from "react"
 import { Footer, Header } from "../../components"
 import { HOME_PAGE, TALKS_BREADCRUMB } from "../../constants"
 import { getAllConferences, getAllSpeaches, getAllTalks } from "../../data"
@@ -36,6 +38,10 @@ function buildSpeachesForView(talks: readonly Readonly<Talk>[],
   })
 }
 
+const TalksMapDynamic = dynamic(() => import("../../components/talks-map").then(m => m.TalksMap) as any, {
+  ssr: false
+})
+
 export default function TalksPage() {
   const talks: readonly Readonly<Talk>[] = getAllTalks()
   const conferences: readonly Readonly<Conference>[] = getAllConferences()
@@ -58,6 +64,12 @@ export default function TalksPage() {
             <p className="text-sm">Количество выступлений: <strong>{ speachCount }</strong></p>
           </div>
 
+          <section>
+            <Suspense fallback="Загрузка карты...">
+              <TalksMapDynamic />
+            </Suspense>
+          </section>
+
           <section className="mb-4 overflow-auto flex flex-col gap-6">
             {
               talksForView.map((talk: TalkView) => {
@@ -67,7 +79,7 @@ export default function TalksPage() {
                     <a className="invisible group-hover:visible ml-2" href={ `#${ talk.slug }` }>⌗</a>
                   </h2>
 
-                  <div className="text-sm" dangerouslySetInnerHTML={{ __html: talk.description }}></div>
+                  <div className="text-sm" dangerouslySetInnerHTML={ { __html: talk.description } }></div>
 
                   <div>
                     <ul className="flex flex-col gap-2 pl-4">
@@ -75,16 +87,19 @@ export default function TalksPage() {
                         talk.speaches.map((speach: SpeachView) => {
                           return <li key={ speach.conferenceSlug } className="relative before:content-['—'] before:font-mono before:absolute before:-left-4">
                             <h3>
-                              { speach.siteUrl.isPresent() && <a className="like-link" href={ speach.siteUrl.get() } target="_blank">{ speach.conference.name }</a> }
+                              { speach.siteUrl.isPresent() &&
+                                <a className="like-link" href={ speach.siteUrl.get() } target="_blank">{ speach.conference.name }</a> }
                               { speach.siteUrl.isEmpty() && <span>{ speach.conference.name }</span> }
                               <span className="select-none"> / </span>
-                              <time dateTime={ speach.time.toISOString() } className="text-gray-500">{ speach.time.toLocaleString("ru-RU", { dateStyle: "long" }) }</time>
+                              <time dateTime={ speach.time.toISOString() }
+                                    className="text-gray-500">{ speach.time.toLocaleString("ru-RU", { dateStyle: "long" }) }</time>
                               <span className="text-xs select-none bg-gray-200 px-1 py-0.5 rounded ml-1">{ speach.language }</span>
                             </h3>
 
                             <ul className="text-sm flex gap-4 text-gray-500">
                               { speach.slidesUrl.isPresent() && <li><a className="like-link" href={ speach.slidesUrl.get() } target="_blank">Слайды</a></li> }
-                              { speach.videoUrl.isPresent() && <li><a className="like-link" href={ speach.videoUrl.get() } target="_blank">Видеозапись</a></li> }
+                              { speach.videoUrl.isPresent() &&
+                                <li><a className="like-link" href={ speach.videoUrl.get() } target="_blank">Видеозапись</a></li> }
                               { speach.notesUrl.isPresent() && <li><a className="like-link" href={ speach.notesUrl.get() } target="_blank">Заметки</a></li> }
                             </ul>
                           </li>
