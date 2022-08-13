@@ -64,7 +64,7 @@ export default function TalksPage() {
             <p className="text-sm">Количество выступлений: <strong>{ speachCount }</strong></p>
           </div>
 
-          <section>
+          <section className="mb-8">
             <Suspense fallback="Загрузка карты...">
               <TalksMapDynamic />
             </Suspense>

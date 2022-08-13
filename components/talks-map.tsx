@@ -23,7 +23,8 @@ export function TalksMap() {
           maxZoom: 19,
           attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
         })
-      ]
+      ],
+      attributionControl: false
     })
 
     for (const conference of conferences) {
