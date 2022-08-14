@@ -16,7 +16,7 @@ const conferences: readonly Conference[] = [
   {
     name: "RndTechConf 2021",
     slug: "rnd-tech-conf-2021",
-    url: Maybe.of(""),
+    url: Maybe.of("https://rndtech.pro/"),
     role: ConferenceRole.speaker,
     location: {
       country: "Россия",
@@ -27,7 +27,7 @@ const conferences: readonly Conference[] = [
   {
     name: "MergeConf 2021",
     slug: "merge-conf-2021",
-    url: Maybe.of(""),
+    url: Maybe.of("https://mergeconf.ru/"),
     role: ConferenceRole.speaker,
     location: {
       country: "Россия",
@@ -49,7 +49,7 @@ const conferences: readonly Conference[] = [
   {
     name: "FrontendConf 2021",
     slug: "frontendconf-2021",
-    url: Maybe.of(""),
+    url: Maybe.of("https://frontendconf.ru"),
     role: ConferenceRole.speaker,
     location: {
       country: "Россия",
@@ -60,7 +60,7 @@ const conferences: readonly Conference[] = [
   {
     name: "KrdDevDays 3",
     slug: "krddevdays-3",
-    url: Maybe.of(""),
+    url: Maybe.of("https://krd.dev/"),
     role: ConferenceRole.speaker,
     location: {
       country: "Россия",
@@ -71,7 +71,7 @@ const conferences: readonly Conference[] = [
   {
     name: "NgRostov 2019",
     slug: "ng-rostov-2019",
-    url: Maybe.of(""),
+    url: Maybe.empty(),
     role: ConferenceRole.speaker,
     location: {
       country: "Россия",
@@ -82,7 +82,7 @@ const conferences: readonly Conference[] = [
   {
     name: "Web Standards Days 2019",
     slug: "web-standards-days-2019",
-    url: Maybe.of(""),
+    url: Maybe.of("https://wsd.events"),
     role: ConferenceRole.speaker,
     location: {
       country: "Россия",

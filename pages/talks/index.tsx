@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic"
 import Head from "next/head"
-import { Suspense } from "react"
 import { Footer, Header } from "../../components"
 import { HOME_PAGE, TALKS_BREADCRUMB } from "../../constants"
 import { getAllConferences, getAllSpeaches, getAllTalks } from "../../data"
@@ -17,25 +16,36 @@ interface TalkView extends Talk {
 function buildSpeachesForView(talks: readonly Readonly<Talk>[],
                               conferences: readonly Readonly<Conference>[],
                               speaches: readonly Readonly<Speach>[]): readonly Readonly<TalkView>[] {
-  return talks.map((talk) => {
-    const speachesByTalk = speaches.filter((speach) => speach.talkSlug === talk.slug)
+  return talks
+    .map((talk) => {
+      const speachesByTalk = speaches.filter((speach) => speach.talkSlug === talk.slug)
 
-    return {
-      ...talk,
-      speaches: speachesByTalk.map((speach) => {
-        const conference: Readonly<Conference> | undefined = conferences.find((cn) => cn.slug === speach.conferenceSlug)
+      return {
+        ...talk,
+        speaches: speachesByTalk
+          .map((speach) => {
+            const conference: Readonly<Conference> | undefined = conferences.find((cn) => cn.slug === speach.conferenceSlug)
 
-        if (typeof conference === "undefined") {
-          throw new Error(`Conference with slug="${ speach.conferenceSlug }" not found`)
-        }
+            if (typeof conference === "undefined") {
+              throw new Error(`Conference with slug="${ speach.conferenceSlug }" not found`)
+            }
 
-        return {
-          ...speach,
-          conference
-        }
-      })
-    }
-  })
+            return {
+              ...speach,
+              conference
+            }
+          })
+          .sort((a, b) => b.time.getTime() - a.time.getTime())
+      }
+    })
+    .sort((a, b) => {
+      if (typeof b.speaches.at(0) === "undefined" || typeof a.speaches.at(0) === "undefined") {
+        return 1
+      }
+
+      // @ts-ignore
+      return b.speaches.at(0).time.getTime() - a.speaches.at(0).time.getTime()
+    })
 }
 
 const TalksMapDynamic = dynamic(() => import("../../components/talks-map").then(m => m.TalksMap) as any, {
@@ -64,11 +74,11 @@ export default function TalksPage() {
             <p className="text-sm">Количество выступлений: <strong>{ speachCount }</strong></p>
           </div>
 
-          <section className="mb-8">
+          {/*<section className="mb-8">
             <Suspense fallback="Загрузка карты...">
               <TalksMapDynamic />
             </Suspense>
-          </section>
+          </section>*/}
 
           <section className="mb-4 overflow-auto flex flex-col gap-6">
             {
