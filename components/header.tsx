@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
 import { BreadcrumbItem } from "../domain"
 import { PageIcon } from "./page-icon"
 
@@ -7,12 +9,24 @@ interface HeaderProps {
 }
 
 export function Header({ breadcrumbs = [] }: HeaderProps) {
+  const router = useRouter()
+  const [ canShare, setCanShare ] = useState(true)
+
+  const shareData: ShareData = {
+    url: `https://mephi.dev${ router.pathname }`,
+    title: (breadcrumbs.at(-1) as any).name
+  }
+
+  useEffect(() => {
+    setCanShare(navigator?.canShare(shareData))
+  }, [])
+
   const onClickSearchButton = () => {
 
   }
 
-  const onClickShareButton = () => {
-
+  const onClickShareButton = async () => {
+    await navigator.share(shareData)
   }
 
   return <header className="p-2 max-w-[1440px]">
@@ -43,12 +57,14 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
           <span className="hidden sm:block">Найти</span>
         </button>
 
-        <button className="interactive flex gap-1">
-          <object className="not-sr-only text-black pointer-events-none" data="/assets/icons/share.svg" type="image/svg+xml">
-            <img className="not-sr-only" src="/assets/icons/share.svg" />
-          </object>
-          <span className="hidden sm:block">Поделиться</span>
-        </button>
+        {
+          canShare && <button className="interactive flex gap-1" onClick={onClickShareButton}>
+            <object className="not-sr-only text-black pointer-events-none" data="/assets/icons/share.svg" type="image/svg+xml">
+              <img className="not-sr-only" src="/assets/icons/share.svg" />
+            </object>
+            <span className="hidden sm:block">Поделиться</span>
+          </button>
+        }
       </div>
     </div>
   </header>
