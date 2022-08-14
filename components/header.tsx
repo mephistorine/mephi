@@ -10,7 +10,7 @@ interface HeaderProps {
 
 export function Header({ breadcrumbs = [] }: HeaderProps) {
   const router = useRouter()
-  const [ canShare, setCanShare ] = useState(true)
+  const [ canShare, setCanShare ] = useState(false)
 
   const shareData: ShareData = {
     url: `https://mephi.dev${ router.pathname }`,
@@ -18,15 +18,15 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
   }
 
   useEffect(() => {
-    setCanShare(navigator?.canShare(shareData))
+    setCanShare(Reflect.has(navigator, "canShare") && navigator.canShare(shareData))
   }, [])
 
   const onClickSearchButton = () => {
 
   }
 
-  const onClickShareButton = async () => {
-    await navigator.share(shareData)
+  const onClickShareButton = () => {
+    navigator.share(shareData)
   }
 
   return <header className="p-2 max-w-[1440px]">
