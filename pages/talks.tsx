@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic"
 import Head from "next/head"
-import { Footer, Header } from "../../components"
-import { HOME_PAGE, TALKS_BREADCRUMB } from "../../constants"
-import { getAllConferences, getAllSpeaches, getAllTalks } from "../../data"
-import { Conference, Speach, Talk } from "../../domain"
+import { Footer, Header } from "../components"
+import { HOME_PAGE, TALKS_BREADCRUMB } from "../constants"
+import { getAllConferences, getAllSpeaches, getAllTalks } from "../data"
+import { Conference, Speach, Talk } from "../domain"
 
 interface SpeachView extends Speach {
   conference: Readonly<Conference>
@@ -48,7 +48,7 @@ function buildSpeachesForView(talks: readonly Readonly<Talk>[],
     })
 }
 
-const TalksMapDynamic = dynamic(() => import("../../components/talks-map").then(m => m.TalksMap) as any, {
+const TalksMapDynamic = dynamic(() => import("../components/talks-map").then(m => m.TalksMap) as any, {
   ssr: false
 })
 
