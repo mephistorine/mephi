@@ -1,19 +1,20 @@
 import Link from "next/link"
-import { Maybe } from "../utils"
+import { BreadcrumbItem } from "../domain"
 import { PageIcon } from "./page-icon"
-
-export interface BreadcrumbItem {
-  url: string
-  icon: Maybe<string>
-  name: string
-  slug: Maybe<string>
-}
 
 interface HeaderProps {
   breadcrumbs?: readonly BreadcrumbItem[]
 }
 
 export function Header({ breadcrumbs = [] }: HeaderProps) {
+  const onClickSearchButton = () => {
+
+  }
+
+  const onClickShareButton = () => {
+
+  }
+
   return <header className="p-2 max-w-[1440px]">
     <div className="flex justify-between">
       <div>
@@ -35,7 +36,7 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
       </div>
 
       <div className="flex gap-2">
-        <button className="interactive flex gap-1 items-center">
+        <button onClick={ onClickSearchButton } className="interactive flex gap-1 items-center">
           <object className="not-sr-only text-black pointer-events-none" data="/assets/icons/search.svg" type="image/svg+xml">
             <img className="not-sr-only" src="/assets/icons/search.svg" />
           </object>
