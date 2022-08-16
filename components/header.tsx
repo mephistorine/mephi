@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { BreadcrumbItem } from "../domain"
 import ShareIcon from "../public//assets/icons/share.svg"
 import SearchIcon from "../public/assets/icons/search.svg"
@@ -14,6 +14,7 @@ interface HeaderProps {
 export function Header({ breadcrumbs = [] }: HeaderProps) {
   const router = useRouter()
   const [ canShare, setCanShare ] = useState(false)
+  const [ isMac, setIsMac ] = useState(false)
 
   const shareData: ShareData = {
     url: `https://mephi.dev${ router.pathname }`,
@@ -22,16 +23,18 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
 
   useEffect(() => {
     setCanShare(Reflect.has(navigator, "canShare") && navigator.canShare(shareData))
+    setIsMac(() => navigator.userAgent.includes("Mac"))
   }, [])
 
-  const onClickShareButton = async () => {
+  const onClickShareButton = useCallback(async () => {
     await navigator.share(shareData)
-      .catch(() => {})
-  }
+                   .catch(() => {
+                   })
+  }, [])
 
-  const onClickSearchButton = () => {
+  const onClickSearchButton = useCallback(() => {
     isShowSearchDialog.set(true)
-  }
+  }, [])
 
   return <header className="p-2 max-w-[1440px]">
     <div className="flex justify-between">
@@ -56,11 +59,18 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
       <div className="flex gap-2">
         <button onClick={ onClickSearchButton } className="interactive flex gap-1 items-center">
           <span className="w-[1em]"><SearchIcon /></span>
-          <span className="hidden sm:block">Найти</span>
+          <span className="hidden sm:flex gap-2">
+            <span>Найти</span>
+            <span>
+              <kbd>{ isMac ? "cmd" : "ctrl" }</kbd>
+              <span> + </span>
+              <kbd>K</kbd>
+            </span>
+          </span>
         </button>
 
         {
-          canShare && <button className="interactive flex gap-1 items-center" onClick={onClickShareButton}>
+          canShare && <button className="interactive flex gap-1 items-center" onClick={ onClickShareButton }>
             <span className="w-[1em]"><ShareIcon /></span>
             <span className="hidden sm:block">Поделиться</span>
           </button>

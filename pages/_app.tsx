@@ -15,12 +15,36 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const onSearchDialogClose = useCallback(() => isShowSearchDialog.set(false), [])
 
+  useEffect(() => {
+    const onKeyDown = ({ metaKey, ctrlKey, code }: KeyboardEvent) => {
+      if (code !== "KeyK") {
+        return
+      }
+
+      if (navigator.userAgent.includes("Mac")) {
+        if (metaKey) {
+          isShowSearchDialog.set(true)
+        }
+      } else {
+        if (ctrlKey) {
+          isShowSearchDialog.set(true)
+        }
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown)
+
+    return () => document.removeEventListener("keydown", onKeyDown)
+  }, [])
+
   return <>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" type="image/png" href="/assets/images/favicon.png" sizes="400x400" />
     </Head>
-    <Component { ...pageProps } />
+    <div>
+      <Component { ...pageProps } />
+    </div>
     { showDialog && <SearchDialog onClose={ onSearchDialogClose } /> }
   </>
 }
