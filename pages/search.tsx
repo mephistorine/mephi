@@ -3,7 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { Footer, Header } from "../components"
 import { HOME_PAGE } from "../constants"
-import { ArticleLike, BreadcrumbItem, Conference, SearchEntity, SearchEntityType, Talk } from "../domain"
+import { ArticleLike, BreadcrumbItem, SearchEntity, SearchEntityType, Talk } from "../domain"
 import { ascSort, Maybe } from "../utils"
 import { descSort } from "../utils/desc-sort"
 import { makeSearchResult } from "../utils/make-search-result"
@@ -34,7 +34,6 @@ export default function Search({ queryString, entities }: Props) {
   const articles: readonly ArticleLike[] = entities.filter(s => s.type === SearchEntityType.article).map(v => v.value)
   const talks: readonly Talk[] = entities.filter(s => s.type === SearchEntityType.talk).map(v => v.value)
   const pages: readonly BreadcrumbItem[] = entities.filter(s => s.type === SearchEntityType.page).map(v => v.value)
-  const conferences: readonly Conference[] = entities.filter(s => s.type === SearchEntityType.conference).map(v => v.value)
 
   return <>
     <Head>

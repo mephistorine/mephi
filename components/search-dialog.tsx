@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FormEvent, KeyboardEvent, MouseEvent, useCallback, useEffect, useState } from "react"
-import { ARTICLES_BREADCRUMB } from "../constants"
+import { ARTICLES_BREADCRUMB, TALKS_BREADCRUMB } from "../constants"
 import { SearchEntity, SearchEntityType, Talk } from "../domain"
 // import ArrowEnterIcon from "../public/assets/icons/arrow-enter.svg"
 // import ArrowDownUpIcon from "../public/assets/icons/arrows-down-up.svg"
@@ -49,22 +49,27 @@ export function SearchDialog(props: Props) {
       })
   }, [ searchString ])
 
+  const closeMe = useCallback(() => {
+    if (typeof props.onClose === "function") {
+      props.onClose()
+    }
+  }, [ props.onClose ])
+
   const onInputHandler = useCallback((event: FormEvent) => setSearchString((event.target as any).value), [])
 
   const onKeyDown = useCallback((event: KeyboardEvent<any>) => {
-    if (event.key === "Escape" && Reflect.has(props, "onClose")) {
-      props.onClose()
+    if (event.key === "Escape") {
+      closeMe()
     }
   }, [])
 
   const onClickContainer = useCallback((event: MouseEvent<any>) => {
     if (event.currentTarget === event.target) {
-      Reflect.has(props, "onClose") && props.onClose()
+      closeMe()
     }
   }, [])
 
   const results = resultEntities.map((entity) => {
-    debugger
     if (entity.type === SearchEntityType.article) {
       return {
         title: entity.value.title,
@@ -89,7 +94,8 @@ export function SearchDialog(props: Props) {
       title: (entity.value as Talk).title,
       slug: (entity.value as Talk).slug,
       icon: Maybe.of("📑"),
-      parentPageTitle: Maybe.empty<string>()
+      parentPageTitle: Maybe.empty<string>(),
+      url: `${ TALKS_BREADCRUMB.url }#${ entity.value.slug }`
     }
   })
 
@@ -114,9 +120,9 @@ export function SearchDialog(props: Props) {
           results.length > 0 && <ul className="divide-y">
             {
               results.map((entity) => {
-                return <li key={ entity.slug }>
-                  <Link href={ "" }>
-                    <a href="" className="flex items-start gap-3 p-2 hover:bg-gray-100 cursor-pointer">
+                return <li key={ entity.slug } onClick={ closeMe }>
+                  <Link href={ entity.url }>
+                    <a href={ entity.url } className="flex items-start gap-3 p-2 hover:bg-gray-100 cursor-pointer">
                       <div>
                         <PageIcon icon={ entity.icon } />
                       </div>
