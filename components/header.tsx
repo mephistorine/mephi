@@ -2,6 +2,8 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { BreadcrumbItem } from "../domain"
+import ShareIcon from "../public//assets/icons/share.svg"
+import SearchIcon from "../public/assets/icons/search.svg"
 import { isShowSearchDialog } from "../stories"
 import { PageIcon } from "./page-icon"
 
@@ -53,17 +55,13 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
 
       <div className="flex gap-2">
         <button onClick={ onClickSearchButton } className="interactive flex gap-1 items-center">
-          <object className="not-sr-only text-black pointer-events-none" data="/assets/icons/search.svg" type="image/svg+xml">
-            <img className="not-sr-only" src="/assets/icons/search.svg" />
-          </object>
+          <span className="w-[1em]"><SearchIcon /></span>
           <span className="hidden sm:block">Найти</span>
         </button>
 
         {
-          canShare && <button className="interactive flex gap-1" onClick={onClickShareButton}>
-            <object className="not-sr-only text-black pointer-events-none" data="/assets/icons/share.svg" type="image/svg+xml">
-              <img className="not-sr-only" src="/assets/icons/share.svg" />
-            </object>
+          canShare && <button className="interactive flex gap-1 items-center" onClick={onClickShareButton}>
+            <span className="w-[1em]"><ShareIcon /></span>
             <span className="hidden sm:block">Поделиться</span>
           </button>
         }
