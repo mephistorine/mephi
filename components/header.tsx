@@ -2,6 +2,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { BreadcrumbItem } from "../domain"
+import { isShowSearchDialog } from "../stories"
 import { PageIcon } from "./page-icon"
 
 interface HeaderProps {
@@ -21,12 +22,13 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
     setCanShare(Reflect.has(navigator, "canShare") && navigator.canShare(shareData))
   }, [])
 
-  const onClickSearchButton = () => {
-
+  const onClickShareButton = async () => {
+    await navigator.share(shareData)
+      .catch(() => {})
   }
 
-  const onClickShareButton = () => {
-    navigator.share(shareData)
+  const onClickSearchButton = () => {
+    isShowSearchDialog.set(true)
   }
 
   return <header className="p-2 max-w-[1440px]">

@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic"
 import Head from "next/head"
 import { Footer, Header } from "../components"
 import { HOME_PAGE, TALKS_BREADCRUMB } from "../constants"
@@ -48,10 +47,6 @@ function buildSpeachesForView(talks: readonly Readonly<Talk>[],
     })
 }
 
-const TalksMapDynamic = dynamic(() => import("../components/talks-map").then(m => m.TalksMap) as any, {
-  ssr: false
-})
-
 export default function TalksPage() {
   const talks: readonly Readonly<Talk>[] = getAllTalks()
   const conferences: readonly Readonly<Conference>[] = getAllConferences()
@@ -73,12 +68,6 @@ export default function TalksPage() {
             <h1 className="text-4xl font-bold">Доклады</h1>
             <p className="text-sm">Количество выступлений: <strong>{ speachCount }</strong></p>
           </div>
-
-          {/*<section className="mb-8">
-            <Suspense fallback="Загрузка карты...">
-              <TalksMapDynamic />
-            </Suspense>
-          </section>*/}
 
           <section className="mb-4 overflow-auto flex flex-col gap-6">
             {

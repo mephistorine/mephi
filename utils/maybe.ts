@@ -86,7 +86,7 @@ export class Maybe<T> {
       return supplier()
     }
 
-    return this.value
+    return Maybe.ofNullable(this.value)
   }
 
   public orElse(other: T): T {

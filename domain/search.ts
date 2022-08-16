@@ -1,13 +1,9 @@
 import { ArticleLike } from "./article"
 import { BreadcrumbItem } from "./breadcrumbs"
-import { Conference } from "./conference"
-import { Speach } from "./speach"
 import { Talk } from "./talk"
 
 interface SearchEntityMap {
   [ SearchEntityType.article ]: ArticleLike
-  [ SearchEntityType.conference ]: Conference
-  [ SearchEntityType.speach ]: Speach
   [ SearchEntityType.talk ]: Talk
   [ SearchEntityType.page ]: BreadcrumbItem
 }
@@ -15,8 +11,6 @@ interface SearchEntityMap {
 export enum SearchEntityType {
   article = "ARTICLE",
   talk = "TALK",
-  speach = "SPEACH",
-  conference = "CONFERENCE",
   page = "PAGE"
 }
 
