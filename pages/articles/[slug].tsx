@@ -17,11 +17,11 @@ import remarkGfm from "remark-gfm"
 // @ts-ignore
 import remarkHeadingId from "remark-heading-id"
 import { getHighlighter } from "shiki"
-import { ArticleTagView, BreadcrumbItem, Footer, Header, PageIcon, SocialButtons } from "../../components"
+import { ArticleTagView, Footer, Header, PageIcon, SocialButtons } from "../../components"
 
-import { ARTICLES_BREADCRUMB, ARTICLES_PATH, HOME_PAGE } from "../../constants"
+import { ARTICLES_BREADCRUMB, ARTICLES_PATH, BASE_URL, HOME_PAGE } from "../../constants"
 import { TAGS } from "../../data"
-import { Article, ArticleLike, ArticlePoster, ArticleTag, makeArticle } from "../../domain"
+import { Article, ArticleLike, ArticlePoster, ArticleTag, BreadcrumbItem, makeArticle } from "../../domain"
 import { formatDate, Maybe, rehypeHeadings, rehypeTableOfContents } from "../../utils"
 
 interface ArticleProps {
@@ -185,7 +185,7 @@ export default function ArticlePage({ source, metadata }: ArticleProps): JSX.Ele
             <MDXRemote { ...source } components={ mdxComponents } />
           </div>
 
-          <SocialButtons title={ article.title } url={ `https://mephi.dev/articles/${ article.slug }` } />
+          <SocialButtons title={ article.title } url={ `${ BASE_URL }/articles/${ article.slug }` } />
         </div>
 
         <Footer />

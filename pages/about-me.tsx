@@ -1,5 +1,5 @@
-import { Footer, Header } from "../components"
-import { ABOUT_ME_PAGE, ARTICLES_BREADCRUMB, HOME_PAGE } from "../constants"
+import { Footer, Header, SocialButtons } from "../components"
+import { ABOUT_ME_PAGE, ARTICLES_BREADCRUMB, BASE_URL, HOME_PAGE } from "../constants"
 
 export default function Page() {
   return <>
@@ -41,6 +41,10 @@ export default function Page() {
               <li><a href="https://t.me/mephistorine">Телеграм</a></li>
               <li><a href="https://mephi.dev/feed.xml">RSS</a></li>
             </ul>
+          </section>
+
+          <section>
+            <SocialButtons title={ ABOUT_ME_PAGE.name } url={ `${ BASE_URL }${ ABOUT_ME_PAGE.url }` } />
           </section>
         </div>
       </div>

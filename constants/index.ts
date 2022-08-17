@@ -2,6 +2,8 @@ import { join } from "path"
 import { BreadcrumbItem } from "../domain"
 import { Maybe } from "../utils"
 
+export * from "./base-url"
+
 export const ARTICLES_PATH: string = join(process.cwd(), "_articles")
 export const TALKS_PATH: string = join(process.cwd(), "_talks")
 
