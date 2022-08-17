@@ -99,10 +99,10 @@ export function SearchDialog(props: Props) {
     }
   })
 
-  return <div className="fixed top-0 left-0 w-full h-full bg-gray-700/70 flex justify-center items-center"
+  return <div className="fixed top-0 left-0 w-full h-full bg-gray-700/70 flex justify-center items-end sm:items-center"
               onKeyDown={ onKeyDown }
               onClick={ onClickContainer }>
-    <div className="flex flex-col justify-between bg-white rounded overflow-hidden w-[450px]">
+    <div className="flex flex-col justify-between bg-white rounded overflow-hidden w-full sm:w-[450px]">
       <header className="flex items-center border-b relative">
         <div className="absolute top-1/2 -translate-y-1/2 left-2 w-6">
           <SearchIcon />
