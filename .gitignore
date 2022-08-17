@@ -36,3 +36,6 @@ yarn-error.log*
 
 .idea/
 .vscode/
+
+/public/rss/**
+!/public/rss/.gitkeep
