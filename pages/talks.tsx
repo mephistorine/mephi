@@ -87,7 +87,7 @@ export default function TalksPage() {
                           return <li key={ speach.conferenceSlug } className="relative before:content-['—'] before:font-mono before:absolute before:-left-4">
                             <h3>
                               { speach.siteUrl.isPresent() &&
-                                <a className="like-link" href={ speach.siteUrl.get() } target="_blank">{ speach.conference.name }</a> }
+                                <a className="like-link" href={ speach.siteUrl.get() } target="_blank" rel="noreferrer">{ speach.conference.name }</a> }
                               { speach.siteUrl.isEmpty() && <span>{ speach.conference.name }</span> }
                               <span className="select-none"> / </span>
                               <time dateTime={ speach.time.toISOString() }
@@ -96,10 +96,10 @@ export default function TalksPage() {
                             </h3>
 
                             <ul className="text-sm flex gap-4 text-gray-500">
-                              { speach.slidesUrl.isPresent() && <li><a className="like-link" href={ speach.slidesUrl.get() } target="_blank">Слайды</a></li> }
+                              { speach.slidesUrl.isPresent() && <li><a className="like-link" href={ speach.slidesUrl.get() } target="_blank" rel="noreferrer">Слайды</a></li> }
                               { speach.videoUrl.isPresent() &&
-                                <li><a className="like-link" href={ speach.videoUrl.get() } target="_blank">Видеозапись</a></li> }
-                              { speach.notesUrl.isPresent() && <li><a className="like-link" href={ speach.notesUrl.get() } target="_blank">Заметки</a></li> }
+                                <li><a className="like-link" href={ speach.videoUrl.get() } target="_blank" rel="noreferrer">Видеозапись</a></li> }
+                              { speach.notesUrl.isPresent() && <li><a className="like-link" href={ speach.notesUrl.get() } target="_blank" rel="noreferrer">Заметки</a></li> }
                             </ul>
                           </li>
                         })

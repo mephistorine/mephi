@@ -28,8 +28,7 @@ export function Header({ breadcrumbs = [] }: HeaderProps) {
 
   const onClickShareButton = useCallback(async () => {
     await navigator.share(shareData)
-                   .catch(() => {
-                   })
+                   .catch(() => {})
   }, [])
 
   const onClickSearchButton = useCallback(() => {

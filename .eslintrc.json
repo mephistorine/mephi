@@ -1,6 +1,7 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "no-debugger": "error"
+    "no-debugger": "error",
+    "@next/next/no-img-element": "off"
   }
 }
