@@ -39,7 +39,7 @@ export default function Page() {
               <li><a href="https://github.com/mephistorine">Гитхаб</a></li>
               <li><a href="https://instagram.com/mephistorine">Инстаграм</a></li>
               <li><a href="https://t.me/mephistorine">Телеграм</a></li>
-              <li><a href="https://mephi.dev/feed.xml">RSS</a></li>
+              <li><a href="https://mephi.dev/rss/feed.xml">RSS</a></li>
             </ul>
           </section>
 

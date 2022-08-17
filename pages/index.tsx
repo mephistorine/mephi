@@ -1,7 +1,17 @@
+import { GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import { Footer, Header, PageIcon } from "../components"
 import { ABOUT_ME_PAGE, ARTICLES_BREADCRUMB, HOME_PAGE, PROJECTS_BREADCRUMB, TALKS_BREADCRUMB } from "../constants"
+import { generateRssFeed } from "../utils/generate-rss-feed"
+
+export const getStaticProps: GetStaticProps = () => {
+  generateRssFeed()
+  
+  return {
+    props: {}
+  }
+}
 
 export default function Home() {
   return <>
