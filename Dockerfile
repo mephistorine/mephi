@@ -14,4 +14,7 @@ RUN npm run build
 
 EXPOSE 3000
 
+# https://nextjs.org/telemetry
+ENV NEXT_TELEMETRY_DISABLED 1
+
 CMD [ "npm", "run", "start" ]
